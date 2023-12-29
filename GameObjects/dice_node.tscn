@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://cj73846440dtt"]
+
+[ext_resource type="Script" path="res://DiceNode.gd" id="1_jldmn"]
+[ext_resource type="FontFile" uid="uid://lddaifpxil3q" path="res://GameAssets/m5x7.ttf" id="2_q1dog"]
+[ext_resource type="Script" path="res://Dice.gd" id="3_d00pl"]
+[ext_resource type="Texture2D" uid="uid://4dqatnvo6r0c" path="res://GameAssets/BlueDice.png" id="4_1c7d8"]
+
+[sub_resource type="Theme" id="Theme_j8gmq"]
+default_font = ExtResource("2_q1dog")
+default_font_size = 32
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0c6nu"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xwtb"]
+radius = 8.0
+
+[node name="DiceNode" type="Node2D" groups=["dicenode"]]
+position = Vector2(1, -95)
+script = ExtResource("1_jldmn")
+
+[node name="DiceLabel" type="Label" parent="."]
+z_index = 1
+texture_filter = 1
+offset_left = -3.0
+offset_top = -8.0
+offset_right = 6.0
+offset_bottom = 10.0
+theme = SubResource("Theme_j8gmq")
+text = "4"
+
+[node name="Dice" type="RigidBody2D" parent="." groups=["dice"]]
+texture_filter = 1
+physics_material_override = SubResource("PhysicsMaterial_0c6nu")
+max_contacts_reported = 1000
+contact_monitor = true
+script = ExtResource("3_d00pl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dice"]
+scale = Vector2(2, 2)
+texture = ExtResource("4_1c7d8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dice"]
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_0xwtb")
+
+[connection signal="body_entered" from="Dice" to="Dice" method="_on_body_entered"]
