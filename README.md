@@ -1,5 +1,5 @@
 # Godot Dice Roller
-Quick dice roller application I created in ~3 hours where you are able to throw bouncy 2D dice around a dungeon room.
+Quick dice roller application I created in ~3 hours where you are able to throw bouncy 2D dice (d4, d6, d8, d10, d12, and d20) around a dungeon room.
 
 Made with Godot Engine v4.1.2
 
